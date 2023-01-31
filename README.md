@@ -1,1 +1,1 @@
-# SchoolMAnagement
+# SchoolManagement
