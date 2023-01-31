@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
+  
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>admin</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!-- <servlet>
+    <servlet-name>webservice</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet> -->
+  <servlet>
+    <servlet-name>AppAdmin</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+
+  
+<!--   <servlet>
+    <display-name>AppDownload</display-name>
+    <servlet-name>AppDownload</servlet-name>
+    <servlet-class>appadmin.ios.AppDownload</servlet-class>
+  </servlet> -->
+ 
+<!--   <servlet-mapping>
+    <servlet-name>admin</servlet-name>
+    <url-pattern>*.admin</url-pattern>
+  </servlet-mapping> -->
+ <!--  <servlet-mapping>
+    <servlet-name>webservice</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping> -->
+ 
+  <servlet-mapping>
+    <servlet-name>AppAdmin</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  
+  
+  <!-- <servlet-mapping>
+    <servlet-name>AppDownload</servlet-name>
+    <url-pattern>/catie.ipa</url-pattern>
+  </servlet-mapping>  -->
+  
+  <welcome-file-list>
+    <welcome-file>admin/login.jsp</welcome-file>
+  </welcome-file-list>
+    
+ 
+  
+ 
+  <servlet>
+    <servlet-name>rest</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rest</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>simulate</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>4</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>simulate</servlet-name>
+    <url-pattern>/simulate/*</url-pattern>
+  </servlet-mapping>
+  
+  
+
+
+</web-app>

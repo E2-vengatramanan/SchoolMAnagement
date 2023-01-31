@@ -1,0 +1,196 @@
+#!/bin/bash
+    # chkconfig: 234 20 80
+    # description: Tomcat Server basic start/shutdown script
+    # processname: tomcat
+    JAVA_HOME=/usr/java/jdk1.8.0_121
+    export JAVA_HOME
+    TOMCAT_HOME=/home/apache-tomcat-8.5.15
+    START_TOMCAT="${TOMCAT_HOME}/bin/startup.sh"
+    STOP_TOMCAT="${TOMCAT_HOME}/bin/shutdown.sh"
+   SHUTDOWN_WAIT=20
+   SERVER_LOG="${TOMCAT_HOME}/logs/catalina.log"
+   prog=tomcat
+   
+. /etc/rc.d/init.d/functions
+
+tomcat_pid() {
+echo `ps aux | grep org.apache.catalina.startup.Bootstrap | grep -v grep | awk '{ print $2 }'`
+}
+ 
+#Return true for system boot time
+isboottime() {
+	/usr/bin/uptime | grep day > /dev/null
+	[ $? -eq 0 ] && return 1
+
+	min=$(uptime |sed 's/.*up//'|sed 's/,.*//'|sed 's/min//' |sed 's/://')
+	if [ "$min" -lt 3 ] ; then
+		return 0
+	fi
+	return 1
+}
+status() {
+	ps -fwwd | grep java | grep org.apache.catalina.startup.Bootstrap > /dev/null
+	return $?
+}
+
+#
+# Kill using -9 command
+#
+
+forceKilltomcat() {
+	#Check JBoss process is runing
+	PID=$(ps auxwwwf |grep 'org.apache.catalina.startup.Bootstrap' |grep -v grep | perl -lane 'print  $F[1]')
+
+	[ -z "${PID}" ] && return 0
+
+	#Send kill -9 signel to all pids
+	PIDS=$(	pstree -p "${PID}" | perl -ne 'push(@pids, ($_ =~ /\((\d+)\)/g) ); END{ print join(" ", @pids);print "\n"}' )
+
+	[ -z "${PIDS}" ] && return 0	
+
+	 kill -9 ${PIDS} > /dev/null 2>&1
+	# Wait for some time
+	sleep 2
+}
+
+
+waitForStop() {
+    tries=${1-8}	# default 8 tries before giving up
+    sleep=${1-1}	# default 1 seconds sleep between tries
+    try=1
+    while [ $try -le ${tries} ]
+    do
+	sleep ${sleep}	
+	pid=$(tomcat_pid)
+	if [ -n "$pid" ]
+	then
+            let try=$try+1	
+	else
+            return 0
+	fi
+    done
+
+    #Try force kill 
+    forceKilltomcat
+
+    status || return 0
+
+    WARNING="Still Tomcat JVM is Running Please use Tomcat status command after sometime"
+    echo_warning
+    echo  -e "\n$WARNING"
+    return 1
+}
+
+waitForStart() {
+    #System boot time don't wait for start
+    isboottime && return 0   
+
+    tries=${1-30}	# default 25 tries before giving up
+    sleep=${1-1}	# default 3 seconds sleep between tries
+    try=1
+    while [ $try -le ${tries} ]
+    do 
+        sleep ${sleep}	 
+	egrep '^.* org\.apache\.catalina\.startup\.Catalina.* Server.* startup.* ms.*$' ${SERVER_LOG} > /dev/null
+	if [ $? -eq 0 ]
+	then
+            return 0
+	fi
+	let try=$try+1
+    done
+    WARNING="Still TOMCAT JVM is Running use tomcat status"
+    echo_warning
+    echo  -e "\n$WARNING"
+    return 1
+}
+
+start() {
+pid=$(tomcat_pid)
+if [ -n "$pid" ]
+then
+echo "Tomcat is already running (pid: $pid)"
+else
+# Start tomcat
+
+ulimit -n 100000
+umask 007
+
+cd $TOMCAT_HOME/bin
+[ -f "$SERVER_LOG" ] &&  mv --force "${SERVER_LOG}" "${SERVER_LOG}.old"
+cat /dev/null > "${SERVER_LOG}"  2> /dev/null
+rm -rf $TOMCAT_HOME/temp/*
+rm -rf $TOMCAT_HOME/work/*
+rm -rf $TOMCAT_HOME/webapps/catie
+rm -rf $TOMCAT_HOME/webapps/homecare
+/bin/su -p -s /bin/sh root $TOMCAT_HOME/bin/startup.sh
+echo -n $"Starting $prog: "
+waitForStart
+RETVAL=$?
+	if [ ${RETVAL} -eq 0 ]
+	then
+		echo_success
+	
+	else
+		echo_failure
+	fi
+	echo 
+ 	# Make lock for RedHat / SuSE
+    	if test -w /var/lock/subsys; then
+        	touch /var/lock/subsys/$prog
+    	fi
+   	
+
+fi 
+ return 0
+}
+
+
+stop() {
+	
+	pid=$(tomcat_pid)
+	if [ -n "$pid" ]
+	then
+	/bin/su -p -s /bin/sh root $TOMCAT_HOME/bin/shutdown.sh
+	echo -n $"Shutting down $prog: " 
+	waitForStop
+	RETVAL=$?
+	if [ ${RETVAL} -eq 0 ]
+	then
+		echo_success
+ 		
+	else
+		echo_failure
+	fi
+	echo
+    		if test -w /var/lock/subsys; then
+        		rm -f /var/lock/subsys/$prog
+    		fi
+
+	else
+	 echo "Tomcat not running..."
+	fi
+return 0
+}
+ 
+case $1 in
+start)
+start
+;;
+stop)
+stop
+;;
+restart)
+stop
+start
+;;
+status)
+pid=$(tomcat_pid)
+if [ -n "$pid" ]
+then
+echo "Tomcat is running with pid: $pid"
+else
+echo "Tomcat is not running"
+fi
+;;
+esac
+exit 0

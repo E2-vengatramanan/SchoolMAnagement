@@ -1,0 +1,211 @@
+form{
+  color: #525050;
+  padding-top: 2em;
+  /*font-size: 1.2em;*/
+}
+.addNewUser, .privileges, .clientCalendar, .addNewClient{
+  padding-top: 0;
+}
+.flex-outer,
+.flex-inner{
+  list-style-type: none;
+  padding: 0;
+}
+
+.flex-outer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.flex-outer li,
+.flex-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.flex-inner {
+  justify-content: flex-start;
+}
+.flex-inner li{
+  padding-right: 3em;
+}
+.flex-outer > li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.flex-outer li label,
+.flex-outer li p{
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.flex-outer li > span{
+  align-self: center;
+  padding-bottom: 2em;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+#password{
+  text-align: left;
+}
+.flex-outer > li > label,
+.flex-outer li p {
+  flex: 1 0 120px;
+  max-width: 220px;
+}
+
+.flex-outer > li > label + *,
+.flex-inner {
+  flex: 1 0 220px;
+    /*  width: 350px; */
+}
+
+.flex-outer li p {
+  margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea{
+  padding: 10px;
+  overflow:hidden;
+  /* border-width: 1px;
+  border-style: solid;
+  border-color: #ccc; */
+}
+
+.flex-outer li textarea{
+  padding: 10px;
+  padding-right:30px;
+  overflow:hidden;
+}
+.flex-outer li select  {
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  background-color: #fff;
+  /*font-size: 1.2em;*/
+  height: 3em;
+  width: 350px;
+}
+.privileges li select {
+  height: 2em;
+  background-color: #f2f2f2;
+}
+.clientCalendar li select {
+  height: 2em;
+  background-color: #f2f2f2;
+}
+.clientInfoForm li select {
+  height: 2em;
+  background-color: #f2f2f2;
+}
+.flex-outer li button{
+  margin-left: auto;
+  padding: 8px 16px;
+  border: none;
+  background: #777777;
+  color: #f2f2f2;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.flex-outer li button:hover {
+	background: #fd9515;
+}
+.flex-outer li button:disabled{
+  margin-left: auto;
+  padding: 8px 16px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  border-radius: 5px;
+}
+
+
+.flex-outer .featureButton{
+  margin-right: auto;
+}
+
+.flex-inner li {
+}
+.flex-section {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+  background-color: #fff;
+  padding:1em;
+  margin: 1em;
+  align-self: flex-start;
+}
+.flex-section p{
+  align-self: center;
+  font-size: 1.1em;
+  color: #fd9515;
+}
+#assignFeatures > li > ul{
+  align-self: center;
+}
+.flex-section li #all{
+  color: #fd9515;
+}
+#all{
+  color: #fd9515;
+}
+.bold{
+  font-weight: bolder;
+}
+.privilegesUserName {
+  text-align: right;
+}
+
+.menu{
+    position: absolute;
+    margin: auto;
+    top: -55px;
+    right: -70px;
+    bottom: 0;
+    left: 0;
+    width: 600px;
+    height: 200px;
+}
+
+#addFamily {
+  max-width: 77%;
+  margin: 0 auto;
+}
+
+#addFamily li label {
+  display: inline-block;
+}
+#addFamily li select{
+  width: auto;
+}
+#addFamily li select,#addFamily li input:not([type='checkbox']){
+  display: block;
+}
+
+#addFamily li{
+  flex-wrap: nowrap;
+}
+#addFamily li p{
+  font-weight: 800;
+}
+
+#addFamily li p{
+  max-width: 100%;
+}
+.error-message-text{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.margin-bottom-zero{
+  margin-bottom: 0 !important;
+  margin-top: 5px !important;
+}

@@ -1,0 +1,86 @@
+
+.container{
+    background-color: transparent;
+    width:97%;
+    height:100%;
+    margin-top:5%;
+    margin-left:0%;
+     margin-right:20%;
+     text-align: center;
+}
+
+ 
+#bar{
+	width:100%;
+	color:red;
+}
+#head{
+	color: red;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0px;
+    margin-top: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: #ffc107 0px 5px 15px;
+}
+#headwel{
+    color: #1300ff;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0px;
+    margin-top: 2%;
+    font-family: -webkit-pictogr, Helvetica, sans-serif;
+    text-shadow: #e5e3dd 0px 5px 15px;
+} 
+#page{
+    color: #218626;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0px;
+    margin-top: 2%;
+    font-family: -webkit-pictogr, Helvetica, sans-serif;
+    text-shadow: #e5e3dd 0px 5px 15px;
+} 
+#address1{
+	color:gold;
+	text-align:center;
+	justify-content:center;
+	    margin-left: 0px;
+	    text-shadow: #34f127 0px 5px 15px;
+}
+#address{
+	color:Skyblue;
+	text-align:center;
+	justify-content:center;
+	    margin-left: 0px;
+	    text-shadow: #00BCD4 0px 5px 15px;
+}
+#logo{
+	width:100px;
+	position:center;
+	margin-top:-5%;
+}
+#home{
+	margin-top:0px;
+}
+
+
+
+#pics{
+	margin-left:30px;
+	margin-top:6%;
+	margin-bottom:2%;
+    margin-left: 27%;
+}
+#pic1{
+	margin-left:20px;
+	height:150px;
+}
+#pic2{
+	margin-left:40px;
+	height:150px;
+}
+#pic3{
+	margin-left:40px;
+	height:150px;
+}

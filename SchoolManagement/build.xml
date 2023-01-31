@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+
+<project name="school" default="war">
+
+	<property name="warfile.name"     value="school.war"/>
+	<property name="des.classes.dir"  value="build/classes"/>
+
+	<property environment="env"/> 
+	
+	<property name="TOMCAT_HOME" value="${env.TOMCAT_HOME_6}"/> 
+
+
+	<property name="local.deploy"     value="${TOMCAT_HOME}\webapps"/>
+	<property name="des.persistanceDB.dir"		value="build\classes\persistantDB"/>
+	<path id="compile.classpath">
+		<fileset dir=".">
+			<include name="jar/*.jar"/>
+			<include name="lib/*.jar"/>
+		</fileset>
+		
+	</path>
+	<target name="clean">
+		<delete  dir="build" />
+		<delete  file="config/${warfile.name}"/>
+		<delete  includeEmptyDirs="true" dir="${local.deploy}\${ant.project.name}"/>
+		<delete  includeEmptyDirs="true" dir="${TOMCAT_HOME}\temp"/>
+		<delete  includeEmptyDirs="true" dir="${TOMCAT_HOME}\work"/>
+		<mkdir dir="${TOMCAT_HOME}\work"/>
+		
+		<mkdir dir="${TOMCAT_HOME}\temp"/>
+		<delete  includeEmptyDirs="true" file="${local.deploy}\${warfile.name}"/>
+	</target>
+	
+	<target name="init" depends="clean">
+		<mkdir dir="build/classes"/>
+	</target>
+	
+	<target name="compile" depends="init" >
+		
+		<javac destdir="${des.classes.dir}" debug="true" srcdir="src" includeantruntime="true" encoding="iso-8859-1" >
+			<classpath refid="compile.classpath"/>
+		</javac>
+
+		<copy todir="${des.classes.dir}">
+			<fileset dir="src" includes="**/**/*.xml" />
+		</copy>
+	</target>
+	
+	<target name="war" depends="compile">
+		<war destfile="config/${warfile.name}" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent"/>
+			<lib dir="WebContent/WEB-INF/lib" />
+			<classes dir="${des.classes.dir}" />
+		</war>
+		<copy file="config/${warfile.name}" todir="${local.deploy}"/>
+	</target>
+</project>

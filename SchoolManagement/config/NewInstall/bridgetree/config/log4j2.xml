@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+ <Configuration status="WARN" monitorInterval="30"> 
+    <Properties> 
+        <Property name="LOG_PATTERN"> 
+           %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex 
+        </Property> 
+        <Property name="logpath">logs</Property> 
+    </Properties> 
+    <Appenders> 
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true"> 
+            <PatternLayout pattern="${LOG_PATTERN}"/> 
+        </Console>
+
+		<RollingFile name="FileAppender" fileName="${sys:logpath}/root.log"
+			filePattern="${sys:logpath}/root-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile> 
+	    
+	     <RollingFile name="client" fileName="${sys:logpath}/client.log"  
+             filePattern="${sys:logpath}/client-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="checkin" fileName="${sys:logpath}/checkin.log"  
+             filePattern="${sys:logpath}/checkin-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="familyPortal" fileName="${sys:logpath}/familyPortal.log"  
+             filePattern="${sys:logpath}/familyPortal-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="mediaContent" fileName="${sys:logpath}/mediaContent.log"  
+             filePattern="${sys:logpath}/mediaContent-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="menu" fileName="${sys:logpath}/menu.log"  
+             filePattern="${sys:logpath}/menu-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="message" fileName="${sys:logpath}/message.log"  
+             filePattern="${sys:logpath}/message-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="notes" fileName="${sys:logpath}/notes.log"  
+             filePattern="${sys:logpath}/notes-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="weather" fileName="${sys:logpath}/weather.log"  
+             filePattern="${sys:logpath}/weather-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="checkList" fileName="${sys:logpath}/checkList.log"  
+             filePattern="${sys:logpath}/checkList-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="survey" fileName="${sys:logpath}/survey.log"  
+             filePattern="${sys:logpath}/survey-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	      <RollingFile name="contact" fileName="${sys:logpath}/contact.log"  
+             filePattern="${sys:logpath}/survey-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+	    <RollingFile name="event" fileName="${sys:logpath}/event.log"  
+             filePattern="${sys:logpath}/survey-%d{yyyy-MM-dd}.log"> 
+		    <PatternLayout> 
+		        <Pattern>${LOG_PATTERN}</Pattern> 
+		    </PatternLayout> 
+		    <Policies> 
+		        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+		    </Policies> 
+		    <DefaultRolloverStrategy max="10"/> 
+	    </RollingFile> 
+	    
+    </Appenders> 
+    
+    <Loggers> 
+		<Logger name="ClientAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="client" /> 
+        </Logger> 
+        
+        <Logger name="ClientService" level="debug" additivity="false"> 
+            <AppenderRef ref="client" /> 
+        </Logger> 
+        
+        <Logger name="ClientDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="client" /> 
+        </Logger> 
+        
+        <Logger name="CheckinAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="checkin" /> 
+        </Logger>
+        
+        <Logger name="CheckinService" level="debug" additivity="false"> 
+            <AppenderRef ref="checkin" /> 
+        </Logger>
+        
+        <Logger name="CheckinDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="checkin" /> 
+        </Logger>
+        
+        <Logger name="ContactAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="contact" /> 
+        </Logger> 
+        
+        <Logger name="ContactService" level="debug" additivity="false"> 
+            <AppenderRef ref="contact" /> 
+        </Logger> 
+        
+        <Logger name="ContactDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="contact" /> 
+        </Logger> 
+        
+        <Logger name="FamilyPortalAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="familyPortal" /> 
+        </Logger> 
+        
+        <Logger name="FamilyPortalService" level="debug" additivity="false"> 
+            <AppenderRef ref="familyPortal" /> 
+        </Logger> 
+        
+        <Logger name="FamilyPortalDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="familyPortal" /> 
+        </Logger>  
+        
+        <Logger name="MediaContentAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="mediaContent" /> 
+        </Logger>
+        
+        <Logger name="MediaContentService" level="debug" additivity="false"> 
+            <AppenderRef ref="mediaContent" /> 
+        </Logger>
+        
+        <Logger name="MediaContentDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="mediaContent" /> 
+        </Logger> 
+        
+        <Logger name="MenuAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="menu" /> 
+        </Logger> 
+        
+        <Logger name="MenuService" level="debug" additivity="false"> 
+            <AppenderRef ref="menu" /> 
+        </Logger> 
+        
+        <Logger name="MenuDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="menu" /> 
+        </Logger> 
+        
+        <Logger name="MessageAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="message" /> 
+        </Logger>
+        
+        <Logger name="MessageService" level="debug" additivity="false"> 
+            <AppenderRef ref="message" /> 
+        </Logger>
+        
+        <Logger name="MessageDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="message" /> 
+        </Logger> 
+        
+        <Logger name="NotesAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="notes" /> 
+        </Logger> 
+        
+        <Logger name="NotesService" level="debug" additivity="false"> 
+            <AppenderRef ref="notes" /> 
+        </Logger> 
+        
+        <Logger name="NotesDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="notes" /> 
+        </Logger> 
+        
+        <Logger name="WeatherAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="weather" /> 
+        </Logger>
+        
+        <Logger name="WeatherService" level="debug" additivity="false"> 
+            <AppenderRef ref="weather" /> 
+        </Logger>
+        
+        <Logger name="WeatherDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="weather" /> 
+        </Logger>
+        
+        <Logger name="ChecklistAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="checkList" /> 
+        </Logger>
+        
+        <Logger name="ChecklistService" level="debug" additivity="false"> 
+            <AppenderRef ref="checkList" /> 
+        </Logger>
+        
+        <Logger name="ChecklistDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="checkList" /> 
+        </Logger>
+        
+        <Logger name="SurveyAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="survey" /> 
+        </Logger> 
+        
+        <Logger name="SurveyService" level="debug" additivity="false"> 
+            <AppenderRef ref="survey" /> 
+        </Logger> 
+        
+        <Logger name="SurveyDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="survey" /> 
+        </Logger>   
+        
+        <Logger name="EventAPI" level="debug" additivity="false"> 
+            <AppenderRef ref="event" /> 
+        </Logger> 
+        
+        <Logger name="EventService" level="debug" additivity="false"> 
+            <AppenderRef ref="event" /> 
+        </Logger> 
+        
+        <Logger name="EventDAO" level="debug" additivity="false"> 
+            <AppenderRef ref="event" /> 
+        </Logger> 
+        
+        <Root level="info"> 
+            <AppenderRef ref="ConsoleAppender" /> 
+             <AppenderRef ref="FileAppender" /> 
+        </Root> 
+    </Loggers> 
+</Configuration> 
+

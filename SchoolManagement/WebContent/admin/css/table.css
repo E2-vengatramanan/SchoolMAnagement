@@ -1,0 +1,133 @@
+
+
+.schooltable {
+  width: 100%;
+  border-collapse: collapse;
+  color: #1f58d1;
+  /* font-size: 1.2em; */
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+}
+table.schooltable {
+  
+	width: 100%;
+  	border-collapse: collapse;
+  	color: #250505;
+	font-size: 12px;
+  	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+}
+
+.schooltable > thead {
+  border-radius: 5px;
+}
+/* Zebra striping */
+.schooltable > tbody > tr:nth-child(even) {
+  background-color: rgb(198, 202, 183);
+}
+.schooltable > thead > tr , th {
+  background-color: #0b6aca;;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+}
+.schooltable > tbody > tr > td, th {
+  overflow: hidden;
+  padding: 6px; 
+    border: 1px solid #0a0606;
+  text-align: center;
+ 
+
+}
+#viewTitle{
+  color: green;
+  font-size: x-large;
+  text-align: center;
+}
+.schooltable > tbody > tr > td {
+	 padding: 6px;
+	   border: 1px solid #0a0606;
+
+}
+.schooltable > tbody > td {
+  text-align: left;
+}
+
+
+.fa-thumbs-up{
+  color: green;
+}
+.fa-thumbs-down {
+  color: red;
+}
+.fa-pencil {
+  color: #fd9515;
+}
+.fa-pencil:hover {
+   font-size: 2em;
+}
+.fa-book:hover {
+   font-size: 2em;
+}
+.fa-trash{
+  color: red;
+}
+.fa-trash:hover {
+   font-size: 2em;
+}
+.fa-volume-up {
+  color: #0079ff;
+}
+.fa-volume-up:hover {
+   font-size: 2em;
+}
+.fa-tablet {
+  color: #0079ff;
+}
+.fa-tablet:hover {
+   font-size: 2em;
+}
+.fa-bars {
+  color: #fd9515;
+}
+.fa-link {
+   color: green;
+}
+.fa-link:hover {
+   font-size: 2em;
+}
+.fa-magic {
+  color: green;
+}
+.fa-magic:hover {
+   font-size: 2em;
+}
+.fa-chain-broken {
+  color: red;
+}
+.fa-chain-broken:hover {
+   font-size: 2em;
+}
+.center {
+  text-align: center;
+}
+.fa-lock:hover {
+   font-size: 2em;
+}
+
+
+.phoneNumberDisplay {
+
+    cursor: help;
+    padding-bottom: 7px;
+    text-align: center;
+    text-decoration: underline;
+}
+.ellipsis {
+    width: 170px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.fa-passwd-reset > .fa-lock {
+  font-size: 0.85rem;
+}

@@ -1,0 +1,11 @@
+1. Add the following line at the bottom of the httpd.conf file 
+	SSLProxyEngine on
+	ProxyPass /webnotification/ wss://127.0.0.1:8443/webnotification/
+	ProxyPassReverse /webnotification/ wss://127.0.0.1:8443/webnotification/
+
+2. Copy mod_proxy_wstunnel.so file and paste it in /usr/lib64/httpd/modules/
+
+3. Add the following line in httpd.conf file 
+	LoadModule proxy_wstunnel_module /usr/lib64/httpd/modules/mod_proxy_wstunnel.so
+
+4. Restart the httpd service. 
