@@ -14,8 +14,8 @@ public class LoginController {
 	LoginService service=new LoginService();
 
     @PostMapping("login.do")
-    public JSONObject userLogin(@RequestParam String userName,@RequestParam String passWord) {
-		JSONObject obj = service.userLogin(userName,passWord);
+    public JSONObject userLogin(@RequestParam String userName,@RequestParam String passWord,@RequestParam String loginTypeFlag) {
+		JSONObject obj = service.userLogin(userName,passWord,loginTypeFlag);
 		return obj;
 	}
     @PostMapping("logout.do")

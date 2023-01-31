@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,8 +37,13 @@ public class StaffController {
 		return obj;
 	}
 	@DeleteMapping("/staff.do")
-	public JSONObject deleteStaff(@RequestBody StaffModel model) {
-		JSONObject obj = service.deleteStaff(model);
+	public JSONObject deleteStaff(@RequestParam Integer staffId) {
+		JSONObject obj = service.deleteStaff(staffId);
 		return obj;
 	}
+	/* @PostMapping("/assignproject.do")
+	public JSONObject assignproject(@RequestBody StudentStaffMappingModel studenttAssignModel) {
+		JSONObject obj = service.assignStudent(studenttAssignModel);
+		return obj;//no need for customermapping table
+	} */
 }

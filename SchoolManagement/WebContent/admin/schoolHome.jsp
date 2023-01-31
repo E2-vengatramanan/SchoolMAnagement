@@ -6,6 +6,26 @@
 <link rel="icon" type="image/x-icon" href="images/pheonixschoollogo.jpeg">
 <title>Pheonix Ineternational School</title>
  <link rel="stylesheet" href="css/home.css"> 
+ <script>
+function openadminpage(){
+    localStorage.setItem("logintypeflag",1);
+    localStorage.setItem("logintitle","ADMIN LOGIN PAGE");
+    window.location.href="login.jsp";
+}
+function openstaffpage(){
+    localStorage.setItem("logintypeflag",2);
+    localStorage.setItem("logintitle","STAFF LOGIN PAGE");
+    window.location.href="login.jsp";
+}
+
+function openstudentpage(){
+    localStorage.setItem("logintypeflag",3);
+    localStorage.setItem("logintitle","STUDENT LOGIN PAGE");
+    window.location.href="login.jsp";
+}
+
+
+ </script>
 </head>
 <body id="homebody">
 <div class="container">
@@ -18,9 +38,15 @@
 Tamil Nadu 620026
 Phone: 076958 88801</h2></div>
 <div id="pics">
-<a href="login.jsp"><img src="images/admin.jpg" style="width:20%"id="pic1"></a>
-<a href="login.jsp"><img src="images/teacherlogo.png" style="width:20%"id="pic2"></a>
-<a href="login.jsp"><img src="images/student.jpeg" style="width:20%"id="pic3"></a>
+   <table>
+    <tr>
+       <th><img src="images/admin.jpg" style="width:55%;cursor: pointer;" id="pic1" onclick="openadminpage()"><p>ADMIN</p></th>
+     
+       <th><img src="images/teacherlogo.png" style="width:55%;cursor:pointer;" id="pic2" onclick="openstaffpage()"><p>STAFF</p></th>
+          
+       <th><img src="images/student.jpeg" style="width:55%;cursor: pointer;" id="pic3" onclick="openstudentpage()"><p>STUDENT</p></th>
+   </tr>
+   </table>
 </div>
 </body>
 </html>

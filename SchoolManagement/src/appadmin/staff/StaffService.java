@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import appadmin.student.StudentModel;
+
 @Service
 public class StaffService {
 	
@@ -93,10 +95,10 @@ public class StaffService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject deleteStaff(StaffModel modelData) {
+	public JSONObject deleteStaff(Integer staffId) {
 		JSONObject resultObj = new JSONObject();
 		try {
-			Boolean updateDeleteFlag = dao.updateDeleteFlag(modelData);
+			Boolean updateDeleteFlag = dao.updateDeleteFlag(staffId);
 			if(updateDeleteFlag) {
 				resultObj.put("data", "Staff Deleted Successfully");
 				resultObj.put("status", "success");
@@ -111,5 +113,42 @@ public class StaffService {
 		}
 		return resultObj;
 	}
+
+	/* @SuppressWarnings("unchecked")
+	public JSONObject assignproject(StudentStaffMappingModel studentAssignModel) {
+		JSONObject resultObj = new JSONObject();
+		try {
+			Boolean saveFlag = true;
+			//dao.removeExistingAssingedStaff(studentAssignModel.getStaffId(),studentAssignModel.getModifiedBy());
+			StaffModel model = new StaffModel(studentAssignModel.getStaffId());
+			for(Integer staffId : studentAssignModel.getStudentId()) {
+				StaffModel staffModel = new StaffModel(staffId);
+				StudentStaffMapping assignstudent = new StudentStaffMapping();
+				assignstudent.setStaffModel(model);
+				assignstudent.setStudModel(staffModel);
+				assignstudent.setCreatedBy(studentAssignModel.getCreatedBy());
+				assignstudent.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+				assignstudent.setStaffDeleteFlag(0);
+				assignstudent.setProjectDeleteFlag(0);
+				Integer savedId = dao.assignProjects(assignstudent);
+				if(savedId!=null && savedId!=0)
+					saveFlag = true;
+				else
+					saveFlag = false;
+			}
+			if(saveFlag) {
+				resultObj.put("data", "Project assigned to Staff Successfully");
+				resultObj.put("status", "success");
+			}else {
+				resultObj.put("data", "Error occurred. Please contact admin");
+				resultObj.put("status", "failure");
+			}
+		}catch(Exception e) {
+			resultObj.put("data", "Error occurred. Please contact admin");
+			resultObj.put("status", "failure");
+		}
+		return resultObj;
+	} */
+	
 
 }

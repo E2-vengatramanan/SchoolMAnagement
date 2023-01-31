@@ -1,6 +1,11 @@
-function validateLoginForm() {
+
+function validateLoginForm() {    
     var userName = document.getElementById("username").value;
     var passWord = document.getElementById("password").value;
+    var loginTypeFlag= localStorage.getItem("logintypeflag");
+    var userId=localStorage.getItem("userId");
+    if(loginTypeFlag !=null && loginTypeFlag!=""){
+       
     if ((userName == null || userName == "") && (passWord == null || passWord == "")) {
         alert("please Enter userName & Password");
     } else {
@@ -10,15 +15,31 @@ function validateLoginForm() {
             if (passWord == null || passWord == "") {
                 alert("Please Enter the password");
             } else {
-                var url = window.location.origin + '/school/login.do?userName=' + userName + "&passWord=" + passWord
+                var url = window.location.origin + '/school/login.do?userName=' + userName + "&passWord=" + passWord+ "&loginTypeFlag=" + loginTypeFlag
 
                 $.ajax({
                     url: url,
                     type: "POST",
-
                     success: function (response) {
-                        alert(response.data);
-                        window.location.href = "admin.jsp";
+                        alert(response.data)
+                       console.log(response.status);
+                        if(response.status=="failure"){
+                            return false;
+                        }else{
+                            localStorage.setItem("userId",userName);
+                            localStorage.setItem("userloginId",response.userloginId)
+                            if(loginTypeFlag==1){
+                            window.location.href = "admin.jsp";
+                            
+                        }
+                       else if(loginTypeFlag==2){
+                            window.location.href = "Staff.jsp";
+                        }
+                       else if(loginTypeFlag==3){
+                            window.location.href = "Student.jsp";
+                        }
+                        }
+                        
                     },
                     error: function (a) {
                         alert("Sorry somthing failed to login")
@@ -31,27 +52,61 @@ function validateLoginForm() {
 
     }
 }
-
+else{
+    window.location.href="schoolHome.jsp";
+}
+}
+function loginpagesession(){
+    var logintypeflag=localStorage.getItem("logintypeflag");
+    var logintitle=localStorage.getItem("logintitle");
+    document.getElementById("logintitle").innerHTML=logintitle;
+    if (logintypeflag =="" || logintypeflag==null || logintypeflag==0){   
+        window.location.href="schoolHome.jsp";
+      }
+}
+function sessionvalidate(){
+    var userId=localStorage.getItem("userId");
+    if (userId =="" || userId==null || userId==0){   
+      window.location.href="schoolHome.jsp";
+    }
+  }
 function openAddStudentForm() {
-    resetpage();
+    resetpageAdmin();
     document.getElementById("addstudentDiv").style.display = "block";
 }
 function openAddStaffForm() {
-    resetpage();
+    resetpageAdmin();
     document.getElementById("addstaffDiv").style.display = "block";
 
 }
 function viewStaffList() {
-    resetpage();    
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
+    if(loginTypeFlag==1){
+    resetpageAdmin(); 
+    }else if(loginTypeFlag==2)  { 
+   resetpageStaff();
+    }
     getAllStaff();
 }
-function viewStudentList() {
-    resetpage();
+function viewStudentList() { 
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
+    if(loginTypeFlag==1){
+    resetpageAdmin(); 
+    }else if(loginTypeFlag==2)  { 
+   resetpageStaff();
+    }else{
+
+    } 
     getAllStudent();    
 }
 function logout() {
+    localStorage.removeItem("logintypeflag");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userloginId");
+    localStorage.removeItem("logintitle");
     window.location.href = "schoolHome.jsp";
 }
+
 
 function checkMandatoryFields(formName) {
     var isFormValid = true;
@@ -68,7 +123,7 @@ function checkMandatoryFields(formName) {
 }
 function saveStaff(event) {
     event.preventDefault();
-
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
     var validationFlag = true;
 
     var formNameValue = document.getElementById("staffId") != null && document.getElementById("staffId").value != 0 ? "editStaff" : "addStaff";
@@ -90,7 +145,7 @@ function saveStaff(event) {
             "deleteFlag": 0,
             "createdBy": document.getElementById("createdBy").value,
             "createdDate": document.getElementById("createdDate").value,
-            "modifiedBy": 2
+            "modifiedBy":  localStorage.getItem("userloginId")
         }
 
 
@@ -103,7 +158,7 @@ function saveStaff(event) {
             "phone": document.getElementById("staffMob").value,
             "emailId": document.getElementById("staffMail").value,
             "deleteFlag": 0,
-            "createdBy": 1
+            "createdBy":localStorage.getItem("userloginId")
         }
 
     }
@@ -116,7 +171,11 @@ function saveStaff(event) {
             contentType: "application/json",
             success: function (response) {
                 alert(response.data);
-                resetpage();
+                if(loginTypeFlag==1){
+                    resetpageAdmin();
+                    }else if(loginTypeFlag==2){
+                        resetpageStaff();
+                    }
 
             },
             error: function (a) {
@@ -130,6 +189,7 @@ function saveStaff(event) {
 }
 function saveStudent(event) {
     event.preventDefault();
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
     var validationFlag = true;
 
     var formNameValue = document.getElementById("studentId") != null && document.getElementById("studentId").value != 0 ? "editStudent" : "addStudent";
@@ -151,7 +211,7 @@ function saveStudent(event) {
             "deleteFlag": 0,
             "createdBy": document.getElementById("createdBy").value,
             "createdDate": document.getElementById("createdDate").value,
-            "modifiedBy": 2
+            "modifiedBy": localStorage.getItem("userloginId")
         }
     } else {
         data = {
@@ -162,7 +222,7 @@ function saveStudent(event) {
             "phone": document.getElementById("studentMob").value,
             "emailId": document.getElementById("studentMail").value,
             "deleteFlag": 0,
-            "createdBy": 1
+            "createdBy": localStorage.getItem("userloginId")
         }
     }
     if (validationFlag) {
@@ -174,8 +234,11 @@ function saveStudent(event) {
             contentType: "application/json",
             success: function (response) {
                 alert(response.data);
-                resetpage();
-
+                if(loginTypeFlag==1){
+                resetpageAdmin();
+                }else if(loginTypeFlag==2){
+                    resetpageStaff();
+                }
             },
             error: function (a) {
                 alert("error")
@@ -211,9 +274,7 @@ function getAllStaff() {
                 responseArray = response.data;
 
                 for (var i = 0; i < responseArray.length; i++) {
-
                     var jsonObj = responseArray[i];
-
                     trHTML += '<tr>';
                     trHTML += '<td align="left" class="btd"><div class="tableDate" >' + jsonObj.firstName + '</div></td>';
                     trHTML += '<td align="left" class="btd"><div class="tableDate">' + jsonObj.lastName + '</div></td>';
@@ -222,7 +283,7 @@ function getAllStaff() {
                     trHTML += '<td align="left" class="btd"><div class="tableDate">' + jsonObj.emailId + '</div></td>';
                     trHTML += '<td align="left" class="btd"><div class="tableDate">' + jsonObj.address + '</div></td>';
                     trHTML += '<td align="center" class="btd"><i  class=" fa fa-pencil" style="font-size:28px;color:green" onclick="staffEdit(' + i + ')"></i></td>';
-                    trHTML += '<td align="center" class="btd"><i class="fa fa-remove" style="font-size:28px;color:red" onclick="confirmPopup(' + jsonObj.staffId + ')"></i></td>';
+                    trHTML += '<td align="center" class="btd"><i class="fa fa-remove" style="font-size:28px;color:red" onclick="confirmPopupStaff(' + jsonObj.staffId + ')"></i></td>';
                     trHTML += ' </tr>';
                 }
 
@@ -291,6 +352,8 @@ function getAllStudent() {
 }
 
 function staffEdit(index) {
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
+    if(loginTypeFlag==1){
     document.getElementById("viewStaffListDiv").style.display = 'none';
     document.getElementById("editstaffDiv").style.display = 'block';
     document.getElementById("staffFname1").value = responseArray[index].firstName;
@@ -302,8 +365,14 @@ function staffEdit(index) {
     document.getElementById("staffId").value = responseArray[index].staffId;
     document.getElementById("createdBy").value = responseArray[index].createdBy;
     document.getElementById("createdDate").value = responseArray[index].createdDate;
+    }else{
+        alert("Sorry You Don't have privillage for Edit Process...");
+        return false;
+    }
 }
 function studentEdit(index) {
+    var loginTypeFlag=localStorage.getItem("logintypeflag");
+    if(loginTypeFlag==1 || loginTypeFlag==2){
     document.getElementById("viewStudentListDiv").style.display = 'none';
     document.getElementById("editstudentDiv").style.display = 'block';
     document.getElementById("studentId").value = responseArray2[index].studentId;
@@ -315,8 +384,12 @@ function studentEdit(index) {
     document.getElementById("studentMail1").value = responseArray2[index].emailId;
     document.getElementById("createdBy").value = responseArray2[index].createdBy;
     document.getElementById("createdDate").value = responseArray2[index].createdDate;
+    }else{
+        alert("Sorry You Don't have privillage for Edit Process...");
+        return false; 
+    }
 }
-function resetpage() {
+function resetpageAdmin() {
     document.getElementById("addStudent").reset();
     document.getElementById("editStudent").reset();
     document.getElementById("addStaff").reset();
@@ -331,4 +404,35 @@ function resetpage() {
     document.getElementById("createdBy").value = "";
     document.getElementById("createdDate").value = "";
 
+}
+function resetpageStaff() {    
+    document.getElementById("editStudent").reset();   
+    document.getElementById("editstudentDiv").style.display = "none";   
+    document.getElementById("viewStaffListDiv").style.display = "none";
+    document.getElementById("viewStudentListDiv").style.display = "none";
+    document.getElementById("studentId").value = "";
+    document.getElementById("createdBy").value = "";
+    document.getElementById("createdDate").value = "";
+
+}
+
+function confirmPopupStaff(staffId){
+var text="Are you sure want to delete staff?";
+    if (confirm(text) == true) {
+        var url = window.location.origin+'/school/staff.do?staffId=' + staffId
+    
+     $.ajax({
+            url: url,
+            type: "DELETE",                
+            success:function(response) {    
+                alert(response.data);
+               getAllStaff();
+            },
+            error: function (a) {
+                console.log(a)
+            }
+          });
+      } else {
+        text = "You canceled!";
+      }
 }

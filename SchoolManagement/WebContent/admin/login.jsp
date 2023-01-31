@@ -12,20 +12,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/school.js"></script>
 <link rel="stylesheet" href="css/home.css"> 
- 
+ <script>
+    function returnhome(){
+    window.location.href="schoolHome.jsp";
+    }
+</script>
 </head>
 <body id="loginbody">
 <div id="login" style="text-align: center;">
-<h1 style="color: blue;">Login Page</h1>
+<h1 id="logintitle" style="color: blue; font-size: x-large;"></h1>
 <label for="userName">userName</label>
 <input type="text" value="" placeholder="Enter userName" id="username"></input>
 <br><br>
 <label for="userName">passWord</label>
-<input type="text" value="" placeholder="Enter userName" id="password"></input>
+<input type="password" value="" placeholder="Enter userName" id="password">
+</input>
+
 <br><br>
 
 <!-- <input type="hidden" id="errormessage">{$errormessage}</input> -->
-<button id="loginButton" onclick="validateLoginForm()"  type="submit">Login</button>
+&nbsp;&nbsp;<button id="loginButton" onclick="validateLoginForm()"  type="submit">Login</button>&nbsp;&nbsp;
+<button id="homeButton" onclick="returnhome()"  type="submit">Home</button>
 </div>
+<script type="text/javascript">
+    loginpagesession();
+    </script>
 </body>
 </html>

@@ -62,20 +62,15 @@ public class StaffDAO {
 	}
 	
 
-	public Boolean updateDeleteFlag(StaffModel modelData) {
+	public Boolean updateDeleteFlag(Integer staffId) {
 		Boolean resultFlag = false;
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Transaction transaction = session.beginTransaction();
 			String sql = "Update StaffModel set  deleteFlag = 1 where staffId=:ID";
 			Query query = session.createQuery(sql);
-			query.setParameter("ID", modelData.getStaffId());
-			Integer executeId = query.executeUpdate();
-			String hql = "Update StudentStaffMapping set  staffDeleteFlag = 1 where staffId=:ID";
-			Query query1 = session.createQuery(hql);
-			query1.setParameter("ID", modelData.getStaffId());
-			query1.executeUpdate();
-
+			query.setParameter("ID",staffId);
+			Integer executeId = query.executeUpdate();		
 			transaction.commit();
 			session.close();
 			if (executeId != null && executeId != 0) {

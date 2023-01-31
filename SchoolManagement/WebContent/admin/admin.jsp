@@ -27,7 +27,7 @@
           </style>
 </head>
 
-<body id="adminbody">
+<body id="adminbody" >
     
 	<div class="container">
 		<div style="text-align:center" >
@@ -39,6 +39,7 @@
 				<button id="homebutton2" type="button" onclick="openAddStaffForm()">ADD STAFF</button>
                 <button id="homebutton2" type="button" onclick="viewStudentList()">VIEW STUDENT</button>
                 <button id="homebutton2" type="button" onclick="viewStaffList()">VIEW STAFF</button>
+                <button id="homebutton2" type="button" onclick="openStudentStaffForm()">STUDENT MAPPING</button>
                 <button type="button" onclick="logout()">LOGOUT</button>
 			</form>			
 		</div></div>
@@ -168,6 +169,9 @@
             <input type = "hidden" id="studentId" value=0 />
             <input type = "hidden" id="createdBy" value=0 />
             <input type = "hidden" id="createdDate" value=0 />
+            <script type="text/javascript">
+            sessionvalidate();
+            </script>
            
 </body>
 </html>

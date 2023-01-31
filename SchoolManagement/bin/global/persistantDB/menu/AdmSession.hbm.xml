@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="admin.login.AdmSession" table="adm_session">
+        <id name="admSessionId" type="java.lang.Integer">
+            <column name="adm_session_id" />
+            <generator class="identity" />
+        </id>
+        <property name="sessionId" type="java.lang.String">
+            <column name="session_id"  />
+        </property>
+        <property name="admUserId" type="java.lang.Integer">
+            <column name="adm_user_id" />
+        </property>
+        <property name="uniqueKey" type="java.lang.String">
+            <column name="unique_key" />
+        </property>
+        <property name="endDate" type="java.sql.Timestamp">
+            <column name="end_date"  />
+        </property>
+        <property name="createdBy" type="java.lang.Integer">
+            <column name="created_by"  />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date"  />
+        </property>
+        <property name="modifiedBy" type="java.lang.Integer">
+            <column name="modified_by"  />
+        </property>
+        <property name="modifiedDate" type="java.sql.Timestamp">
+            <column name="modified_date" />
+        </property>
+    </class>
+</hibernate-mapping>

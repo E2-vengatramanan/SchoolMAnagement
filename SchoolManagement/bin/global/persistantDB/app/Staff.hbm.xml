@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="appadmin.staff.StaffModel" table="staff_details" >
+        <id name="staffId" type="java.lang.Integer">
+            <column name="staff_id" />
+            <generator class="identity" />
+        </id>
+        <property name="subject" type="java.lang.String">
+            <column name="subject"  />
+        </property>
+          <property name="firstName" type="java.lang.String">
+            <column name="first_name" length="150" />
+        </property>
+        <property name="lastName" type="java.lang.String">
+            <column name="last_name" length="150"/>
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" length="150" />
+        </property>
+          <property name="phone" type="java.lang.String">
+            <column name="phone" length="150"/>
+        </property>
+          <property name="emailId" type="java.lang.String">
+            <column name="email_id" length="150"/>
+        </property>
+          <property name="deleteFlag" type="java.lang.Integer">
+            <column name="delete_flag" />
+        </property>
+        <property name="createdBy" type="java.lang.Integer">
+            <column name="created_by" />
+        </property>
+        <property name="createdDate" type="java.sql.Timestamp">
+            <column name="created_date" length="19" />
+        </property>
+        <property name="modifiedBy" type="java.lang.Integer">
+            <column name="modified_by" />
+        </property>
+        <property name="modifiedDate" type="java.sql.Timestamp">
+            <column name="modified_date" length="19" />
+        </property>
+        <property name="endDate" type="java.sql.Timestamp">
+            <column name="end_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

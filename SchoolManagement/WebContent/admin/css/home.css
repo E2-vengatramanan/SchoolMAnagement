@@ -84,3 +84,14 @@
 	margin-left:40px;
 	height:150px;
 }
+
+#loginButton{
+   background-color: #f6faf6;
+   color: rgb(25, 78, 9);
+    cursor: pointer;
+}
+#homeButton{
+    background-color: #f6faf6;
+   color: rgb(16, 29, 151);
+    cursor: pointer;
+}

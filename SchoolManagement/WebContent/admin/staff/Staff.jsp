@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/x-icon" href="pheonixschoollogo.jpeg">
+<link rel="icon" type="image/x-icon" href="/images/pheonixschoollogo.jpeg">
 <title>Pheonix Ineternational School</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,8 +14,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="school.js"></script>
-<link rel="stylesheet" href="home.css"> 
+
+<script type="text/javascript" src="js/school.js"></script>
+<link rel="stylesheet" href="css/home.css"> 
+<link rel="stylesheet" href="css/table.css">  
 <style>
     div {
             margin-bottom: 10px;
@@ -32,18 +34,17 @@
     
 	<div class="container">
 		<div style="text-align:center" >
-            <img src="pheonixschoollogo.jpeg" id="logo">
+            <img src="/images/pheonixschoollogo.jpeg" id="logo">
 			<h1 id="headwel">WELCOME</h1>
             <h2 id="page">STAFF PAGE</h2>
 			<form>
-				<!-- <button id="homebutton1" type="button"  onclick="openEditStudentForm()">EDIT STUDENT</button> -->
 				<button id="homebutton2" type="button" onclick="viewStudentList()">VIEW STUDENT</button>
                 <button id="homebutton2" type="button" onclick="viewStaffList()">VIEW STAFF</button>
                 <button type="button" onclick="logout()">LOGOUT</button>
 			</form>			
 		</div></div>        
-            <div id="editstudent"  style="text-align: center;display:none;">
-                <form class="editstudentform"id="editStudent" method="post">
+            <div id="editstudentDiv"  style="text-align: center;display:none;">
+                <form class="editstudentform" id="editStudent" method="post">
                     <h3 style="color: green;text-align: center;">Student Edit Form</h3>
                         <div class="form-group">
                             <label id="lab">Student First Name</label>
@@ -71,10 +72,16 @@
                             </div>	
                     </form>
                 </div>     
-	            <div id="viewStaffList" style="margin-bottom: 10px;display: none;">
-            </div>
-            <div id="viewStudentList" style="margin-bottom: 10px;display: none;">
-            </div>
+                <div id="viewStaffListDiv" style="margin-bottom: 10px;display: none;max-width: 50%;margin-left: 22%;">
+                    <h1 style="color:green;font-size:2%;">STAFF LIST </h1>
+                </div>
+                <div id="viewStudentListDiv" style="margin-bottom: 10px;display: none;max-width: 50%;margin-left: 22%;">
+                </div>
             <input type = "hidden" id="studentId" value=0 />
+            <input type = "hidden" id="createdBy" value=0 />
+            <input type = "hidden" id="createdDate" value=0 />
+            <script type="text/javascript">
+                sessionvalidate();
+                </script>
 </body>
 </html>
