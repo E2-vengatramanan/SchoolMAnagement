@@ -33,7 +33,7 @@
         <div class="container">
             <div style="text-align:center">
                 <img src="images/pheonixschoollogo.jpeg" id="logo">
-                <h1 id="headwel">WELCOME</h1>
+                <div id="headwel"></div>
                 <h2 id="page">STAFF PAGE</h2>
                 <form>
                     <button id="homebutton2" type="button" onclick="viewStudentList()">VIEW STUDENT</button>

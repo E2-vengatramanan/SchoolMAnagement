@@ -19,11 +19,9 @@
 		
 		<mapping resource="global/persistantDB/app/Staff.hbm.xml" />
 		<mapping resource="global/persistantDB/app/Student.hbm.xml" />	
+		<mapping resource="global/persistantDB/app/StudentStaffMapping.hbm.xml" />			
 		<mapping resource="global/persistantDB/menu/AdmUser.hbm.xml" />			
-		<mapping resource="global/persistantDB/menu/AdmSession.hbm.xml" />	
+		<mapping resource="global/persistantDB/menu/AdmSession.hbm.xml" />
 	
-
-
-		
 	</session-factory>
 </hibernate-configuration>

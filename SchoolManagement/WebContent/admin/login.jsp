@@ -15,6 +15,7 @@
  <script>
     function returnhome(){
     window.location.href="schoolHome.jsp";
+    localStorage.removeItem("logintypeflag");
     }
 </script>
 </head>

@@ -1,6 +1,6 @@
 package appadmin.staff;
 import java.sql.Timestamp;
-import java.util.List;
+
 import appadmin.student.StudentModel;
 
 public class StudentStaffMapping {
@@ -9,7 +9,7 @@ public class StudentStaffMapping {
 	private StaffModel staffModel;
 	private Integer activeFlag;
 	private Integer staffDeleteFlag;
-	private Integer projectDeleteFlag;
+	private Integer studentDeleteFlag;
 	private Integer createdBy;
 	private Timestamp createdDate;
 	private Integer modifiedBy;
@@ -45,12 +45,14 @@ public class StudentStaffMapping {
     public void setStaffDeleteFlag(Integer staffDeleteFlag) {
         this.staffDeleteFlag = staffDeleteFlag;
     }
-    public Integer getProjectDeleteFlag() {
-        return projectDeleteFlag;
+
+    public Integer getStudentDeleteFlag() {
+        return studentDeleteFlag;
     }
-    public void setProjectDeleteFlag(Integer projectDeleteFlag) {
-        this.projectDeleteFlag = projectDeleteFlag;
+    public void setStudentDeleteFlag(Integer studentDeleteFlag) {
+        this.studentDeleteFlag = studentDeleteFlag;
     }
+    
     public Integer getCreatedBy() {
         return createdBy;
     }

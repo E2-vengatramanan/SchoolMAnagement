@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,8 +36,8 @@ public class StudentController {
 		return obj;
 	}
 	@DeleteMapping("/student.do")
-	public JSONObject deleteStaff(@RequestBody StudentModel model) {
-		JSONObject obj = service.deleteStudent(model);
+	public JSONObject deleteStudent(@RequestParam Integer studentId) {
+		JSONObject obj = service.deleteStudent(studentId);
 		return obj;
 	}
 }

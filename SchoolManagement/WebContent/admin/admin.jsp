@@ -16,6 +16,14 @@
         <script type="text/javascript" src="js/school.js"></script>
         <link rel="stylesheet" href="css/home.css">
         <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/form.css">
+        <script>
+
+$(document).ready(function() {
+        $('#studentListId').multiselect();
+    });
+
+        </script>
         <style>
             div {
                 margin-bottom: 10px;
@@ -34,14 +42,15 @@
         <div class="container">
             <div style="text-align:center">
                 <img src="images/pheonixschoollogo.jpeg" id="logo">
-                <h1 id="headwel">WELCOME</h1>
-                <h2 id="Page">ADMIN PAGE</h2>
+                <div id="headwel"></div>
+                <h2 id="page">ADMIN PAGE</h2>
                 <form>
                     <button id="homebutton1" type="button" onclick="openAddStudentForm()">ADD STUDENT</button>
                     <button id="homebutton2" type="button" onclick="openAddStaffForm()">ADD STAFF</button>
                     <button id="homebutton2" type="button" onclick="viewStudentList()">VIEW STUDENT</button>
                     <button id="homebutton2" type="button" onclick="viewStaffList()">VIEW STAFF</button>
-                    <button id="homebutton2" type="button" onclick="openStudentStaffForm()">STUDENT MAPPING</button>
+                    <button id="homebutton2" type="button" onclick="openstaffStudentMappingDiv()">STAFFSTUDENT
+                        MAPPING</button>
                     <button type="button" onclick="logout()">LOGOUT</button>
                 </form>
             </div>
@@ -185,6 +194,38 @@
                 </div>
             </form>
         </div>
+        <div id="staffStudentMappingDiv" style="text-align: center;display: none;">
+            <form class="staffStudentMapping" method="post" id="staffStudentMappingForm">
+                <ul class="flex-outer" id="assign">
+                    <li>
+                        <label for="staffNames">Select Staff<span
+                                style="color:red;font-size: 18px;"><sup>*</sup></span></label>
+                        <select name="staffNames" class="required" id="staffListId" style="max-width: 20.8%;"
+                            onchange="studentCount(this)">
+                            <option>Select Staff</option>
+                        </select>
+                    </li>
+                    <br><br>
+                    <li>
+                        <label for="studentNames" style="display: none;" id="assignstudentlable">Assign Student<span
+                                style="color:red;font-size: 18px;"><sup>*</sup></span></label>
+                        <select name="studentNames" multiple id="studentListId" class="required"
+                            style="max-width: 20.8%; display: none;height: 20%;" multiple="multiple">
+                            <option>Select Student</option>
+                        </select>
+                        <br><br>
+                       
+                    </li>
+                    <br><br>
+                    <li>
+                        <label>  </label>
+                        <input class="btn btn-success" id="submitButtonMap" type="submit" value="SAVE"
+                        onclick="assignStudent(event)" style="    margin-left: 30px;display: none; max-width: 13.8%;">
+                    </li>
+                </ul>
+            </form>
+        </div>
+
         <div id="viewStaffListDiv" style="margin-bottom: 10px;display: none;max-width: 50%;margin-left: 22%;">
             <h1 style="color:green;font-size:2%;">STAFF LIST </h1>
         </div>
@@ -196,6 +237,7 @@
         <input type="hidden" id="createdDate" value=0 />
         <script type="text/javascript">
             sessionvalidate();
+            getStaffForMapping();
         </script>
 
     </body>

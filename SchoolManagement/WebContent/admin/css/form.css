@@ -54,7 +54,8 @@ form{
 .flex-outer > li > label,
 .flex-outer li p {
   flex: 1 0 120px;
-  max-width: 220px;
+  max-width: 350px;
+  color: brown;
 }
 
 .flex-outer > li > label + *,

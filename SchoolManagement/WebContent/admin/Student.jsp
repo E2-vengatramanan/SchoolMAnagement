@@ -24,8 +24,8 @@
 	<div class="container">
 		<div style="text-align:center" >
             <img src="images/pheonixschoollogo.jpeg" id="logo">
-			<h1 id="headwel">WELCOME</h1>
-            <h2 id="Page">STUDENT PAGE</h2>
+			<div id="headwel"></div>
+            <h2 id="page">STUDENT PAGE</h2>
 
 			<form>
 				<!-- <button id="homebutton1" type="button"  onclick="openEditStudentForm()">EDIT STUDENT</button> -->

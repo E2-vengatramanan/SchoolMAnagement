@@ -62,19 +62,21 @@ public class StudentDAO {
 	}
 	
 
-	public Boolean updateDeleteFlag(StudentModel modelData) {
+	public Boolean updateDeleteFlag(Integer studentId) {
 		Boolean resultFlag = false;
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Transaction transaction = session.beginTransaction();
-			String sql = "Update StudentModel set  deleteFlag = 1 where staffId=:ID";
+			String sql = "Update StudentModel set  deleteFlag = 1 where studentId=:ID";
 			Query query = session.createQuery(sql);
-			query.setParameter("ID", modelData.getStudentId());
+			query.setParameter("ID", studentId);
 			Integer executeId = query.executeUpdate();
-			String hql = "Update StudentStaffMapping set  staffDeleteFlag = 1 where studentId=:ID";
-			Query query1 = session.createQuery(hql);
-			query1.setParameter("ID", modelData.getStudentId());
-			query1.executeUpdate();
+			String sql1 = "Update StudentStaffMapping set  studentDeleteFlag =1 where studModel.studentId=:ID";
+			Query query1 = session.createQuery(sql1);
+			query1.setParameter("ID", studentId);
+			query1.executeUpdate(); 
+
+			
 
 			transaction.commit();
 			session.close();

@@ -92,10 +92,10 @@ public class StudentService {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject deleteStudent(StudentModel modelData) {
+	public JSONObject deleteStudent(Integer studentId) {
 		JSONObject resultObj = new JSONObject();
 		try {
-			Boolean updateDeleteFlag = dao.updateDeleteFlag(modelData);
+			Boolean updateDeleteFlag = dao.updateDeleteFlag(studentId);
 			if(updateDeleteFlag) {
 				resultObj.put("data", "Student Deleted Successfully");
 				resultObj.put("status", "success");

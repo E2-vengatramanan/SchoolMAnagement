@@ -22,6 +22,11 @@ public class StaffController {
 		JSONObject obj = service.getAllStaff();
 		return obj;
 	}
+	@GetMapping("/getassignedStudentsByStaffId.do")
+	public JSONObject getassignedStudentsByStaffId(@RequestParam Integer staffId) {
+		JSONObject obj = service.getassignedStudentsByStaffId(staffId);
+		return obj;
+	}
 	
 	@PostMapping("/staff.do")
 	public JSONObject saveStaff(@RequestBody StaffModel model) {
@@ -41,9 +46,9 @@ public class StaffController {
 		JSONObject obj = service.deleteStaff(staffId);
 		return obj;
 	}
-	/* @PostMapping("/assignproject.do")
+	 @PostMapping("/assignStaff.do")
 	public JSONObject assignproject(@RequestBody StudentStaffMappingModel studenttAssignModel) {
-		JSONObject obj = service.assignStudent(studenttAssignModel);
-		return obj;//no need for customermapping table
-	} */
+		JSONObject obj = service.assignStaff(studenttAssignModel);
+		return obj;
+	} 
 }
